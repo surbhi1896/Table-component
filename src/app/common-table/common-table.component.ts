@@ -9,7 +9,6 @@ export class CommonTableComponent {
 
   @Input() tableColumn:any[]=[];
   @Input() tableData:any[]=[];
-  data:any[]=[];
   @Input() tableHeading:string="";
   @Input() tableFooter:string="";
   searchText:string="";
@@ -37,7 +36,7 @@ export class CommonTableComponent {
   }
 
   toggleAll(){
-      this.data.map(row => row.selected = this.selectAll);
+      this.tableData.map(row => row.selected = this.selectAll);
   }
 
   close(){
