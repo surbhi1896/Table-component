@@ -1,0 +1,84 @@
+<div class="modal">
+  <div class="modal-content" [ngStyle]="{'width':tableWidth}">
+    <div class="modal-body">
+      <div class="table-heading">
+        {{ tableHeading }}
+        <span style="float: right">
+          <i class="filter" (click)="showFilter = !showFilter"></i>
+          <i class="close" (click)="close()"></i>
+        </span>
+      </div>
+      <div class="table-container" [ngStyle]="{'width':tableWidth,'max-height': tableHeight } ">
+      <table>
+        <thead>
+          <tr class="filter-field" *ngIf="showFilter">
+            <td [attr.colspan]="tableColumn.length + 1">
+              <input
+                class="search-field"
+                type="text"
+                [(ngModel)]="searchText"
+                placeholder="Global Search"
+              />
+            </td>
+          </tr>
+          <tr>
+            <th>
+              <input
+                type="checkbox"
+                class="checkbox"
+                [(ngModel)]="selectAll"
+                (change)="toggleAll();updateSelected()"
+              />
+            </th>
+            <th *ngFor="let item of tableColumn" (click)="sort(item.field)">
+              {{ item.header }}
+              <i
+                [ngClass]="{
+                  'asc-sort': item.field == sortKey && !sortDesc,
+                  'desc-sort': item.field == sortKey && sortDesc,
+                  sort: item.field !== sortKey
+                }"
+              ></i>
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr
+            *ngFor="
+              let row of tableData
+                | filterdata : searchText
+                | sort : [sortKey, sortDesc]
+            "
+            [ngClass]="{ highlight: row.selected }"
+          >
+            <td>
+              <input
+                type="checkbox"
+                class="checkbox"
+                (change)="updateSelected()"
+                [(ngModel)]="row.selected"
+              />
+            </td>
+            <td *ngFor="let item of tableColumn">{{ row[item.field] }}</td>
+          </tr>
+        </tbody>
+        <tfoot style="width: 100%;">
+            <tr class="table-footer">
+                <td [attr.colspan]="tableColumn.length + 1">
+                    <span *ngIf="tableData?.length == 0">No Records found</span>    
+                    <span *ngIf="selected?.length > 0"> {{selected?.length}} item(s) Selected of </span> 
+                    <span *ngIf="tableData?.length">Total {{tableData.length}} Records</span>   
+                    <span style="float: right;">
+                        <ng-content>
+                        </ng-content>
+                    </span>
+                </td>
+            
+            </tr>
+            
+        </tfoot>
+      </table>
+    </div>
+    </div>
+  </div>
+</div>

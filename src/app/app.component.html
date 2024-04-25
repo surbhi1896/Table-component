@@ -1,0 +1,22 @@
+<div class="button-container">
+    <button class="button" (click)="toggleUser()">User Data</button>
+    <button class="button" (click)="toggleTodo()">Todo Data</button>
+    <button class="button" (click)="toggleAlbum()">Album Data</button>
+</div>
+
+
+  <app-common-table *ngIf="showUserData" (closeModal)="toggleUser()" [tableColumn]="column" [tableData]="data" [tableWidth]="tablewidth" [tableHeading]="tableHeading" [tableFooter]="tableFooterText" [tableHeight]="tableHeight">
+    <div style="display: inline-block;">
+        <button class="footer-button" (click)="toggleUser()">Close</button>
+      </div>
+  </app-common-table>
+  <app-common-table *ngIf="showTodoData" (closeModal)="toggleTodo()" [tableColumn]="column" [tableData]="data" [tableWidth]="tablewidth" [tableHeading]="tableHeading" [tableFooter]="tableFooterText" [tableHeight]="tableHeight">
+    <div style="display: inline-block;">
+        <button class="footer-button" (click)="toggleTodo()">Close</button>
+      </div>
+  </app-common-table>
+  <app-common-table *ngIf="showAlbumData" (closeModal)="toggleAlbum()" [tableColumn]="column" [tableData]="data" [tableWidth]="tablewidth" [tableHeading]="tableHeading" [tableFooter]="tableFooterText" [tableHeight]="tableHeight">
+    <div style="display: inline-block;">
+        <button class="footer-button" (click)="toggleAlbum()">Close</button>
+      </div>
+  </app-common-table>
