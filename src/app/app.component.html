@@ -11,12 +11,6 @@
       </div>
   </app-common-table>
   <app-common-table *ngIf="showTodoData" (closeModal)="toggleTodo()" [tableColumn]="column" [tableData]="data" [tableWidth]="tablewidth" [tableHeading]="tableHeading" [tableFooter]="tableFooterText" [tableHeight]="tableHeight">
-    <div style="display: inline-block;">
-        <button class="footer-button" (click)="toggleTodo()">Close</button>
-      </div>
   </app-common-table>
   <app-common-table *ngIf="showAlbumData" (closeModal)="toggleAlbum()" [tableColumn]="column" [tableData]="data" [tableWidth]="tablewidth" [tableHeading]="tableHeading" [tableFooter]="tableFooterText" [tableHeight]="tableHeight">
-    <div style="display: inline-block;">
-        <button class="footer-button" (click)="toggleAlbum()">Close</button>
-      </div>
   </app-common-table>
